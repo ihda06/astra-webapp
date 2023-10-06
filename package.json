@@ -9,19 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "airtable": "^0.12.2",
+    "axios": "^1.5.1",
+    "next": "13.5.4",
+    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.4"
+    "react-icons": "^4.11.0",
+    "sharp": "^0.32.6",
+    "sweetalert2": "^11.7.31",
+    "twitter-api-v2": "^1.15.1",
+    "usehooks-ts": "^2.9.1",
+    "zustand": "^4.4.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/multer": "^1.4.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "encoding": "^0.1.13",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.4"
+    "typescript": "^5"
   }
 }
