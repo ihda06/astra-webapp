@@ -52,9 +52,10 @@ export async function handleImage(file: File) {
   try {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    const production = process.env.NEXT_PUBLIC_PRODUCTION as string
     let path: string
 
-    if(process.env.NEXT_PUBLIC_PRODUCTION === "true"){
+    if(production === "true"){
       path = join(process.cwd(), file.name);
     } else{
       path = join("./public", "tmp", file.name);
