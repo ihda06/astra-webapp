@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export default function TwitterMenfessForm({}) {
   const [image, setImages] = useState<File | null>(null);
   const [isError, setIsError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<string>("");
   const [tweet, setTweet] = useState<string>("");
   const textInput = useRef<HTMLDivElement>(null);
@@ -49,7 +50,8 @@ export default function TwitterMenfessForm({}) {
     setTweet(e.target.innerText);
   };
 
-  const handlePostTweet = async (e: MouseEvent<HTMLDivElement>) => {
+  const handlePostTweet = async (e: React.MouseEvent<HTMLDivElement>|React.TouchEvent<HTMLElement>) => {
+    setIsLoading(true)
     if (tweet.search(/Cjr!/) >= 0) {
       const formData = new FormData();
       if (image) {
@@ -62,7 +64,7 @@ export default function TwitterMenfessForm({}) {
         },
       });
       const id = res.data.response.link;
-
+      setIsLoading(false)
       if (id) {
         Swal.fire({
           toast: true,
@@ -162,9 +164,10 @@ export default function TwitterMenfessForm({}) {
                 </div>
                 <div
                   className=" cursor-pointer pt-1.5 pb-1 px-3 border rounded-full hover:text-white hover:bg-sky-400 duration-300 font-extrabold text-sky-400 border-sky-400 text-xs"
-                  onClick={handlePostTweet}
+                  onClick={handlePostTweet} onTouchEnd={handlePostTweet}
                 >
-                  Tweet
+                  {isLoading ? "Processing ⌛" :  "Tweet"}
+                  
                 </div>
               </div>
             </div>
