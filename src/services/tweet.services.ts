@@ -61,7 +61,12 @@ export async function handleImage(file: File) {
       path2 = join("./public", "tmp", file.name);
     }
     // const watermarkImage = await readFile(join("./", "public", "wm.png"))
-  //  const pathWM = join(process.cwd(), "")
+   const pathWM = join("/", "wm.png")
+   const pathPublic = join("/","public")
+   const wm = await readFile(pathWM)
+   console.log(wm);
+ 
+   
     
     // const data = await readFile(path)
     const watermark = await sharp(buffer)
