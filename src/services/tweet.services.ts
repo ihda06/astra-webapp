@@ -61,19 +61,19 @@ export async function handleImage(file: File) {
       path2 = join("./public", "tmp", file.name);
     }
     // const watermarkImage = await readFile(join("./", "public", "wm.png"))
-    const pathWM = join(process.cwd());
-    const pathPublic = join("/", "public");
-    const wm = await readFile(pathWM);
-    console.log(wm);
+    // const pathWM = join(process.cwd());
+    // const pathPublic = join("/", "public");
+    // const wm = await readFile(pathWM);
+    // console.log(wm);
 
-    await writeFile(pathWM, wm);
+    // await writeFile(pathWM, wm);
 
     // const data = await readFile(path)
-    const watermark = await sharp(buffer)
-      .composite([{ input: await readFile(pathWM+"/wm.png"), top: 50, left: 50 }])
-      .png({ quality: 80 })
-      .toBuffer();
-    await writeFile(path2, wm);
+    // const watermark = await sharp(buffer)
+    //   .composite([{ input: await readFile(pathWM+"/wm.png"), top: 50, left: 50 }])
+    //   .png({ quality: 80 })
+    //   .toBuffer();
+    await writeFile(path2, buffer);
     // const imageBuffer = Buffer.from()
 
     const ImgTwitterId = await rwClient.v1.uploadMedia(path2);
