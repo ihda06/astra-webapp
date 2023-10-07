@@ -166,7 +166,7 @@ export default function TwitterMenfessForm({}) {
                   className=" cursor-pointer pt-1.5 pb-1 px-3 border rounded-full hover:text-white hover:bg-sky-400 duration-300 font-extrabold text-sky-400 border-sky-400 text-xs"
                   onClick={handlePostTweet} onTouchEnd={handlePostTweet}
                 >
-                  {isLoading ? "Processing ⌛" :  "Tweet"}
+                  {isLoading ? "⌛" :  "Tweet"}
                   
                 </div>
               </div>
