@@ -7,7 +7,7 @@ interface Menu {
 
 export default function Menu({ contents }: Menu) {
   return (
-    <div className="my-5 h-full flex flex-col gap-2">
+    <div className="my-5 h-full flex flex-col gap-2 ">
       {contents.map((item, idx) => (
         <MenuItem key={idx} {...item}/>
       ))}

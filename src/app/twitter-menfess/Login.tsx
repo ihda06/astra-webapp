@@ -58,9 +58,9 @@ export default function Login({}) {
 
   return (
     <div className="h-full flex justify-center items-center py-20 lg:p-0">
-      <div className="p-5 flex flex-col items-center gap-3 text-center border rounded-xl">
+      <div className="p-5 flex flex-col items-center gap-3 text-center border rounded-xl text-neutral-600">
         {isLoading ? (
-          <div className="text-center">
+          <div className="text-center text-neutral-500">
             Loading <span>⌛</span>
           </div>
         ) : (
@@ -71,7 +71,7 @@ export default function Login({}) {
             <input
               type="text"
               className={
-                "border p-3 rounded-full text-xs w-80 " +
+                "border p-3 rounded-full text-xs w-80 placeholder:text-neutral-500 text-neutral-900" +
                 (isError
                   ? "border-red-600 placeholder-red-600 focus:outline-red-600"
                   : "")

@@ -15,7 +15,7 @@ export default function MenuItem({ icon, title, desc, path }: itemMenu) {
           <div className=" text-4xl">{icon}</div>
           <div className="inline-block">
             <h1 className="text-sm font-semibold text-blue-900">{title}</h1>
-            <h2 className="text-[8px]">{desc}</h2>
+            <h2 className="text-[8px] text-neutral-600">{desc}</h2>
           </div>
         </div>
       </div>
