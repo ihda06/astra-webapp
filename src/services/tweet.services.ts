@@ -1,5 +1,5 @@
 import rwClient from "@/utils/twitter-api";
-import path, { join } from "path";
+import { join } from "path";
 import { readFile, unlink, writeFile } from "fs/promises";
 import sharp from "sharp";
 
@@ -53,30 +53,24 @@ export async function handleImage(file: File) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const production = process.env.NEXT_PUBLIC_PRODUCTION as string;
-    let path2: string;
+    let path: string;
 
     if (production === "true") {
-      path2 = join("/", "tmp", file.name);
+      path = join("/", "tmp", file.name);
     } else {
-      path2 = join("./public", "tmp", file.name);
+      path = join("./public", "tmp", file.name);
     }
-    // const watermarkImage = await readFile(join("./", "public", "wm.png"))
-    // const pathWM = join(process.cwd());
-    // const pathPublic = join("/", "public");
-    // const wm = await readFile(pathWM);
-    // console.log(wm);
 
-    // await writeFile(pathWM, wm);
+    const pathWM = join(process.cwd(), "/public/wm.png");
 
     // const data = await readFile(path)
-    // const watermark = await sharp(buffer)
-    //   .composite([{ input: await readFile(pathWM+"/wm.png"), top: 50, left: 50 }])
-    //   .png({ quality: 80 })
-    //   .toBuffer();
-    await writeFile(path2, buffer);
-    // const imageBuffer = Buffer.from()
+    const watermark = await sharp(buffer)
+      .composite([{ input: await readFile(pathWM), top: 50, left: 50 }])
+      .png({ quality: 80 })
+      .toBuffer();
+    await writeFile(path, watermark);
 
-    const ImgTwitterId = await rwClient.v1.uploadMedia(path2);
+    const ImgTwitterId = await rwClient.v1.uploadMedia(path);
     const response = { path: path, mediaId: ImgTwitterId };
 
     return response;
