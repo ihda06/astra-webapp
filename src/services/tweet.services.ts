@@ -60,6 +60,8 @@ export async function handleImage(file: File) {
     } else{
       path = join("./public", "tmp", file.name);
     }
+    const image = await readFile(path)
+    // const data = await readFile(path)
     // const watermark = await sharp(buffer)
     //   .composite([
     //     { input: await readFile("public/wm.png"), top: 50, left: 50 },
@@ -67,8 +69,9 @@ export async function handleImage(file: File) {
     //   .png({ quality: 80 })
     //   .toBuffer();
     // await writeFile(path, buffer);
+    // const imageBuffer = Buffer.from()
 
-    const ImgTwitterId = await rwClient.v1.uploadMedia(path);
+    const ImgTwitterId = await rwClient.v1.uploadMedia(image);
     const response = { path: path, mediaId: ImgTwitterId };
 
     return response;
@@ -97,7 +100,7 @@ export async function postWithImage(image: File, tweet: string) {
 
     const result = { postResponse, link };
 
-    await unlink(response.path);
+    // await unlink(response.path);
     return result;
   } catch (error) {
     throw error;
