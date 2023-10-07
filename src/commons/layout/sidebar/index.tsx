@@ -13,7 +13,7 @@ export default function Sidebar({}) {
         <Greeting></Greeting>
       </div>
       {!isMobile && (
-        <div className="basis-5/6">
+        <div className="basis-5/6 text-neutral-600">
           <Menu contents={menuList}></Menu>
         </div>
       )}

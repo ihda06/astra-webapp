@@ -21,7 +21,7 @@ export default function Greeting({ className = "" }: greetingProps) {
   return (
     <div className="lg:inline-block flex flex-col gap-5 lg:gap-0 items-center">
       <div className={`flex items-center gap-3 ` + className}>
-        <BsRobot size="25px" />
+        <BsRobot size="25px" className="text-neutral-800" />
         <div className="inline-block">
           <h1 className=" text-base font-bold text-blue-900">Hello !! 👋</h1>
           <h2 className="text-[10px] text-blue-400">

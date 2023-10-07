@@ -113,7 +113,7 @@ export default function TwitterMenfessForm({}) {
           </h1>
           <div
             className={
-              "flex flex-col justify-between p-5 rounded-lg w-full border-2 duration-300 " +
+              "flex flex-col justify-between p-5 rounded-lg w-full border-2 duration-300 text-neutral-600 " +
               (isFocus ? " border-sky-400" : "")
             }
           >
