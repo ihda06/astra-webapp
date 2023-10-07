@@ -10,6 +10,7 @@ import Breakline from "@/commons/components/Breakline";
 import axios from "axios";
 import Response from "./Response";
 import Swal from "sweetalert2";
+import Button from "@/commons/components/Button";
 
 export default function TwitterMenfessForm({}) {
   const [image, setImages] = useState<File | null>(null);
@@ -50,8 +51,10 @@ export default function TwitterMenfessForm({}) {
     setTweet(e.target.innerText);
   };
 
-  const handlePostTweet = async (e: React.MouseEvent<HTMLDivElement>|React.TouchEvent<HTMLElement>) => {
-    setIsLoading(true)
+  const handlePostTweet = async (
+    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLElement>
+  ) => {
+    setIsLoading(true);
     if (tweet.search(/Cjr!/) >= 0) {
       const formData = new FormData();
       if (image) {
@@ -64,7 +67,7 @@ export default function TwitterMenfessForm({}) {
         },
       });
       const id = res.data.response.link;
-      setIsLoading(false)
+      setIsLoading(false);
       if (id) {
         Swal.fire({
           toast: true,
@@ -162,13 +165,18 @@ export default function TwitterMenfessForm({}) {
                     ""
                   )}
                 </div>
-                <div
-                  className=" cursor-pointer pt-1.5 pb-1 px-3 border rounded-full hover:text-white hover:bg-sky-400 duration-300 font-extrabold text-sky-400 border-sky-400 text-xs"
-                  onClick={handlePostTweet} onTouchEnd={handlePostTweet}
-                >
-                  {isLoading ? "⌛" :  "Tweet"}
-                  
-                </div>
+                {!isLoading ? (
+                  <Button
+                    className=" hover:text-white hover:bg-sky-400 font-extrabold text-sky-400 border-sky-400 text-xs"
+                    onClick={handlePostTweet}
+                  >
+                    Tweet
+                  </Button>
+                ) : (
+                  <Button className="font-extrabold text-neutral-400 border-neutral-400 text-xs">
+                    ⌛
+                  </Button>
+                )}
               </div>
             </div>
           </div>
