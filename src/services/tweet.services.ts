@@ -66,7 +66,7 @@ export async function handleImage(file: File) {
     // const data = await readFile(path)
     const watermark = await sharp(buffer)
       .composite([
-        { input: await readFile(join(process.cwd(), "public", "wm.png")), top: 50, left: 50 },
+        { input: await readFile(join(process.cwd(), "wm.png")), top: 50, left: 50 },
       ])
       .png({ quality: 80 })
       .toBuffer();
