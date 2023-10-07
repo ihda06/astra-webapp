@@ -1,8 +1,6 @@
 import { postTweet, postWithImage } from "@/services/tweet.services";
-import { writeFile } from "fs/promises";
-import { NextApiRequest, NextApiResponse } from "next";
+import sharp from "sharp"; 
 import { NextRequest, NextResponse } from "next/server";
-import { join } from "path";
 
 import { TwitterApi } from "twitter-api-v2";
 
