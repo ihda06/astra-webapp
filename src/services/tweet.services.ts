@@ -1,5 +1,5 @@
 import rwClient from "@/utils/twitter-api";
-import { join } from "path";
+import path, { join } from "path";
 import { readFile, unlink, writeFile } from "fs/promises";
 import sharp from "sharp";
 
@@ -52,8 +52,13 @@ export async function handleImage(file: File) {
   try {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    let path: string
 
-    const path = join("./public", "tmp", file.name);
+    if(process.env.NEXT_PUBLIC_PRODUCTION === "true"){
+      path = join(process.cwd(), file.name);
+    } else{
+      path = join("./public", "tmp", file.name);
+    }
     // const watermark = await sharp(buffer)
     //   .composite([
     //     { input: await readFile("public/wm.png"), top: 50, left: 50 },
