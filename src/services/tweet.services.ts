@@ -62,13 +62,13 @@ export async function handleImage(file: File) {
     }
     // const image = await readFile(path)
     // const data = await readFile(path)
-    // const watermark = await sharp(buffer)
-    //   .composite([
-    //     { input: await readFile("wm.png"), top: 50, left: 50 },
-    //   ])
-    //   .png({ quality: 80 })
-    //   .toBuffer();
-    await writeFile(path, buffer);
+    const watermark = await sharp(buffer)
+      .composite([
+        { input: await readFile("wm.png"), top: 50, left: 50 },
+      ])
+      .png({ quality: 80 })
+      .toBuffer();
+    await writeFile(path, watermark);
     // const imageBuffer = Buffer.from()
 
     const ImgTwitterId = await rwClient.v1.uploadMedia(path);
