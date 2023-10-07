@@ -10,7 +10,7 @@ export default function Response({ success }: { success?: string }) {
         </div>
         <div className="shadow-sm p-5 rounded-full text-xs break-words">
           <Link
-            href={`https://twitter.com/CjrFess/status/${success}`}
+            href={`${success}`}
             className={" underline text-sky-500"}
           >
             {success && <>https://twitter.com/CjrFess/status/{success}</>}

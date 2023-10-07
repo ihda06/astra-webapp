@@ -48,7 +48,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const response = await postTweet(text);
       return Response.json({ response });
     } else {
-      console.log(file);
+  
       const response = await postWithImage(file, text);
       return Response.json({response});
     }

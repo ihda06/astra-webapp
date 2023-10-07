@@ -30,11 +30,11 @@ export async function postTweet(text: string) {
 
     if (text.length < 265) {
       response = await rwClient.v2.tweet(text);
-      link = response.data.id;
+      link = "https://twitter.com/CjrFess/status/" + response.data.id;
     } else {
       const thread = threadMaker(text);
       response = await rwClient.v2.tweetThread(thread);
-      link = response[0].data.id;
+      link = "https://twitter.com/CjrFess/status/" + response[0].data.id;
     }
 
     const result = {

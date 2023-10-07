@@ -13,7 +13,7 @@ export default function Page({}) {
   useEffect(() => {
     if (localStorage.getItem("teleUsn"))
       login(localStorage.getItem("teleUsn") as string);
-  }, []);
+  }, [login]);
 
   if (!loginInfo) {
     return <Login></Login>;

@@ -62,7 +62,6 @@ export default function TwitterMenfessForm({}) {
         },
       });
       const id = res.data.response.link;
-      console.log(id);
 
       if (id) {
         Swal.fire({
