@@ -22,28 +22,6 @@ export default function Login({}) {
     }
   };
 
-  // const handleParams = () => {
-  //   const oauth_token = searchParams.get("oauth_token") as string;
-  //   const oauth_verifier = searchParams.get("oauth_verifier") as string;
-  //   localStorage.setItem("oauthToken", oauth_token);
-  //   localStorage.setItem("oauth_verifier", oauth_verifier);
-  // };
-
-  // const generateLink = async () => {
-  //   let res = await axios.get("/api/twitterClient");
-
-  //   localStorage.setItem(
-  //     "oauth_callback_confirmed",
-  //     res.data.twitterLink?.oauth_callback_confirmed
-  //   );
-  //   localStorage.setItem("oauth_token", res.data.twitterLink?.oauth_token);
-  //   localStorage.setItem(
-  //     "oauth_token_secret",
-  //     res.data.twitterLink?.oauth_token_secret
-  //   );
-  //   return res.data.twitterLink?.url;
-  // };
-
   const AuthTele = async () => {
     const res = await Airtables("databaseTwitter")
       .select({ filterByFormula: `username_tele = "${usnTele}"` })
@@ -76,14 +54,10 @@ export default function Login({}) {
       console.log(error);
     }
   };
-  // useEffect(() => {
-  //   if (searchParams.get("oauth_token")) {
-  //     handleParams();
-  //   }
-  // }, []);
+
 
   return (
-    <div className="h-full flex justify-center items-center py-20 lg:p-0 ">
+    <div className="h-full flex justify-center items-center py-20 lg:p-0">
       <div className="p-5 flex flex-col items-center gap-3 text-center border rounded-xl">
         {isLoading ? (
           <div className="text-center">

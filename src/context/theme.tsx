@@ -8,5 +8,5 @@ export default function ThemeProviderContext({
 }: {
   children: ReactNode;
 }) {
-  return <ThemeProvider>{children}</ThemeProvider>;
+  return <ThemeProvider attribute="class" defaultTheme="light">{children}</ThemeProvider>;
 }
