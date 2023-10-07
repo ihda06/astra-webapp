@@ -66,7 +66,7 @@ export async function handleImage(file: File) {
     //   ])
     //   .png({ quality: 80 })
     //   .toBuffer();
-    await writeFile(path, buffer);
+    // await writeFile(path, buffer);
 
     const ImgTwitterId = await rwClient.v1.uploadMedia(path);
     const response = { path: path, mediaId: ImgTwitterId };
