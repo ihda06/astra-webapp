@@ -13,7 +13,7 @@ export default function Response({ success }: { success?: string }) {
               </p>
             )}
           </div>
-          <div className="shadow-sm p-5 rounded-full text-xs break-words">
+          <div className="shadow p-5 rounded-full text-xs break-words">
             {success ? (
               <Link href={`${success}`} className={" underline text-sky-500"}>
                 {success}

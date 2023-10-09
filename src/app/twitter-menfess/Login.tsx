@@ -40,7 +40,7 @@ export default function Login({}) {
         return false;
       }
     } else {
-      setIsError("Akun belum didaftarkan");
+      setIsError("Akun belum didaftarkan, silahkan gunakan bot telegram");
       return false;
     }
   };
