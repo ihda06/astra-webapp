@@ -8,8 +8,8 @@ export default function Direction({}) {
           <h1 className=" text-base text-neutral-700 font-bold mb-4">Cara menggunakan</h1>
         </div>
         <ul className="text-[10px] list-disc text-neutral-400 dark:text-neutral-300 ml-4">
-          <li>Jangan lupa gunakan trigger "Cjr!"</li>
-          <li>Contoh : "Cjr! ini menfes aku"</li>
+          <li>Jangan lupa gunakan trigger &quot;Cjr!&quot;</li>
+          <li>Contoh : &quot;Cjr! ini menfes aku&quot;</li>
         </ul>
       </Card>
       <Card className="w-full h-full">
