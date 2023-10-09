@@ -11,8 +11,10 @@ import axios from "axios";
 import Response from "./Response";
 import Swal from "sweetalert2";
 import Button from "@/commons/components/Button";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default function TwitterMenfessForm({}) {
+  const isMobile = useIsMobile();
   const [image, setImages] = useState<File | null>(null);
   const [isError, setIsError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -102,20 +104,37 @@ export default function TwitterMenfessForm({}) {
 
   return (
     <>
-      <div className="flex lg:justify-start justify-center">
-        <div className="inline-block">
-          <Image
-            src="/logo-twitter.png"
-            width={100}
-            height={100}
-            alt="s"
-            className=" w-16 h-auto object-contain rounded-full border"
-          ></Image>
-        </div>
-        <div className="inline-block lg:w-[800px] w-[300px] pl-5 ">
-          <h1 className="pl-2 pb-2 text-sm font-extrabold text-sky-400">
-            Mangga mau ngetweet apa?
-          </h1>
+      <div className="flex lg:justify-start justify-center rounded-lg shadow-md bg-white p-5">
+        {!isMobile && (
+          <div className="inline-block">
+            <Image
+              src="/logo-twitter.png"
+              width={100}
+              height={100}
+              alt="s"
+              className=" w-16 h-auto object-contain rounded-full border"
+            ></Image>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-1 w-full md:pl-5 ">
+          <div className="flex items-center">
+            {isMobile && (
+              <div className="inline-block">
+                <Image
+                  src="/logo-twitter.png"
+                  width={50}
+                  height={50}
+                  alt="s"
+                  className=" w-10 h-auto object-contain rounded-full border"
+                ></Image>
+              </div>
+            )}
+
+            <h1 className="pl-2 pb-2 text-xs font-extrabold text-sky-400">
+              Mangga mau ngetweet apa?
+            </h1>
+          </div>
           <div
             className={
               "flex flex-col justify-between p-5 rounded-lg w-full border-2 duration-300 text-neutral-600 " +
@@ -182,7 +201,7 @@ export default function TwitterMenfessForm({}) {
           </div>
         </div>
       </div>
-      <Response success={isSuccess}/>
+      <Response success={isSuccess} />
     </>
   );
 }

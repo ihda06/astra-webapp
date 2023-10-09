@@ -8,7 +8,7 @@ import useIsMobile from "@/hooks/useIsMobile";
 export default function Sidebar({}) {
   const isMobile = useIsMobile();
   return (
-    <div className="h-full lg:rounded-r-3xl lg:rounded-bl-none rounded-b-3xl bg-indigo-100 w-full p-3 flex flex-col shadow-lg lg:shadow-none">
+    <div className="h-full lg:rounded-r-3xl lg:rounded-bl-none rounded-b-3xl bg-indigo-100 w-full p-3 flex flex-col shadow-lg">
       <div className="basis-1/6 flex items-center justify-center ">
         <Greeting></Greeting>
       </div>

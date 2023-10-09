@@ -60,51 +60,58 @@ export default function Login({}) {
   };
 
   return (
-    <Container className="space-y-4">
-      <Introduction />
-      <Card className="h-full text-center w-full">
-        <div className="flex flex-col gap-2 ">
-          {isLoading ? (
-            <div className="text-center text-neutral-500">
-              Loading <span>⌛</span>
-            </div>
-          ) : (
-            <>
-              {isError ? (
-                <h4 className=" text-red-600 text-xs font-semibold">
-                  {isError}
-                </h4>
-              ) : (
-                <h4 className=" text-neutral-600 text-xs font-semibold">
-                  Silahkan login dulu
-                </h4>
-              )}
-              {twitterStatus}
-              <div className="lg:flex">
-                <input
-                  type="text"
-                  className={
-                    "border p-1.5 px-3 rounded-full text-xs w-full placeholder:text-neutral-500 text-neutral-900" +
-                    (isError
-                      ? "border-red-600 placeholder-red-600 focus:outline-red-600"
-                      : "")
-                  }
-                  placeholder="Silahkan tulis username telegram kamu"
-                  onChange={handleChange}
-                ></input>
-                <div className="flex items-center justify-center lg:mt-0 mt-3 lg:ml-3">
-                  <Button
-                    className="hover:text-white text-xs border-blue-300 hover:bg-blue-800 font-bold text-blue-900 shadow-md"
-                    onClick={handleClickLogin}
-                  >
-                    Login
-                  </Button>
+    <Container className="h-full">
+      <div className="flex h-full">
+        <div className="flex bg-white flex-col lg:flex-row lg:my-36 w-full rounded-xl shadow-xl items-center p-7 gap-5">
+          <div className="lg:basis-4/5 pr-6">
+            <Introduction />
+          </div>
+          <div className="lg:h-full lg:border-l-2 border-t-2 w-full lg:w-0"></div>
+          <div className="lg:basis-2/5 w-full">
+            <div className="flex flex-col gap-2 text-center ">
+              {isLoading ? (
+                <div className="text-center text-neutral-500">
+                  Loading <span>⌛</span>
                 </div>
-              </div>
-            </>
-          )}
+              ) : (
+                <>
+                  <div className="flex flex-col gap-5 ">
+                    {isError ? (
+                      <h4 className=" text-red-600 text-xs font-semibold">
+                        {isError}
+                      </h4>
+                    ) : (
+                      <h4 className=" text-neutral-800 text-xs font-semibold">
+                        Silahkan login dulu
+                      </h4>
+                    )}
+                    {twitterStatus}
+
+                    <input
+                      type="text"
+                      className={
+                        "border p-1.5 px-3 rounded-full text-xs  placeholder:text-neutral-500 text-neutral-900" +
+                        (isError
+                          ? "border-red-600 placeholder-red-600 focus:outline-red-600"
+                          : "")
+                      }
+                      placeholder="Silahkan tulis username telegram kamu"
+                      onChange={handleChange}
+                    ></input>
+                    <Button
+                      className="hover:text-white text-xs border-blue-300 hover:bg-indigo-300 font-bold text-blue-900 shadow-md"
+                      onClick={handleClickLogin}
+                    >
+                      Login
+                    </Button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-      </Card>
+        {/* <Introduction /> */}
+      </div>
     </Container>
   );
 }
