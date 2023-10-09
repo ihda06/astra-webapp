@@ -3,10 +3,11 @@
 import Button from "@/commons/components/Button";
 import { useTwitter } from "@/context/twitter-login";
 import Airtables from "@/utils/Airtable";
-import axios from "axios";
-import { useSearchParams } from "next/navigation";
 
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import Introduction from "./Introduction";
+import Container from "@/commons/components/Container";
+import Card from "@/commons/components/Card";
 
 export default function Login({}) {
   // const searchParams = useSearchParams();
@@ -18,7 +19,7 @@ export default function Login({}) {
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value != null) {
-      setUsnTele(e.target.value); //error
+      setUsnTele(e.target.value);
     }
   };
 
@@ -31,7 +32,6 @@ export default function Login({}) {
         localStorage.setItem("teleUsn", usnTele as string);
 
         login(usnTele);
-
 
         // setUsnTele(usnTele)
         return true;
@@ -47,47 +47,64 @@ export default function Login({}) {
 
   const handleClickLogin = async (e: MouseEvent<HTMLDivElement>) => {
     try {
-      setIsLoading(true);
-      await AuthTele();
-      setIsLoading(false);
+      if (!usnTele) {
+        setIsError("Mohon isi username");
+      } else {
+        setIsLoading(true);
+        await AuthTele();
+        setIsLoading(false);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-
   return (
-    <div className="h-full flex justify-center items-center py-20 lg:p-0">
-      <div className="p-5 flex flex-col items-center gap-3 text-center border rounded-xl text-neutral-600">
-        {isLoading ? (
-          <div className="text-center text-neutral-500">
-            Loading <span>⌛</span>
-          </div>
-        ) : (
-          <>
-            <h1>Login</h1>
-            <h4 className=" text-red-600 text-xs font-semibold">{isError}</h4>
-            {twitterStatus}
-            <input
-              type="text"
-              className={
-                "border p-3 rounded-full text-xs w-80 placeholder:text-neutral-500 text-neutral-900" +
-                (isError
-                  ? "border-red-600 placeholder-red-600 focus:outline-red-600"
-                  : "")
-              }
-              placeholder="Silahkan tulis username telegram kamu"
-              onChange={handleChange}
-            ></input>
-            <Button
-              className="hover:text-white border-blue-900 hover:bg-blue-800 w-32 font-bold text-blue-900 shadow-md"
-              onClick={handleClickLogin}
-            >
-              Login
-            </Button>
-          </>
-        )}
-      </div>
-    </div>
+    <Container className="space-y-4">
+      <Introduction />
+      <Card className="h-full text-center w-full">
+        <div className="flex flex-col gap-2 ">
+          {isLoading ? (
+            <div className="text-center text-neutral-500">
+              Loading <span>⌛</span>
+            </div>
+          ) : (
+            <>
+              {isError ? (
+                <h4 className=" text-red-600 text-xs font-semibold">
+                  {isError}
+                </h4>
+              ) : (
+                <h4 className=" text-neutral-600 text-xs font-semibold">
+                  Silahkan login dulu
+                </h4>
+              )}
+              {twitterStatus}
+              <div className="lg:flex">
+                <input
+                  type="text"
+                  className={
+                    "border p-1.5 px-3 rounded-full text-xs w-full placeholder:text-neutral-500 text-neutral-900" +
+                    (isError
+                      ? "border-red-600 placeholder-red-600 focus:outline-red-600"
+                      : "")
+                  }
+                  placeholder="Silahkan tulis username telegram kamu"
+                  onChange={handleChange}
+                ></input>
+                <div className="flex items-center justify-center lg:mt-0 mt-3 lg:ml-3">
+                  <Button
+                    className="hover:text-white text-xs border-blue-300 hover:bg-blue-800 font-bold text-blue-900 shadow-md"
+                    onClick={handleClickLogin}
+                  >
+                    Login
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </Card>
+    </Container>
   );
 }

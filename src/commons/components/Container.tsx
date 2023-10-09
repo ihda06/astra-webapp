@@ -6,5 +6,5 @@ interface containerProps {
 }
 
 export default function Container({className="", children}: containerProps) {
-  return <div className={`mt-20 mb-10 lg:mt-0 p-8 ${className}` }>{children}</div>;
+  return <div className={` mt-5 mb-10 lg:mt-0 p-8 ${className}` }>{children}</div>;
 }

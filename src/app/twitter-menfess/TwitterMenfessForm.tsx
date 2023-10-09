@@ -182,7 +182,7 @@ export default function TwitterMenfessForm({}) {
           </div>
         </div>
       </div>
-      {isSuccess && <Response success={isSuccess} />}
+      <Response success={isSuccess}/>
     </>
   );
 }
