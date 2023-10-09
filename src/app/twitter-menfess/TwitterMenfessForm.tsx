@@ -54,7 +54,7 @@ export default function TwitterMenfessForm({}) {
   };
 
   const handlePostTweet = async (
-    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLElement>
+    e: React.MouseEvent<HTMLDivElement> 
   ) => {
     setIsLoading(true);
     if (tweet.search(/Cjr!/) >= 0) {
@@ -69,7 +69,7 @@ export default function TwitterMenfessForm({}) {
         },
       });
       const id = res.data.response.link;
-      setIsLoading(false);
+      
       if (id) {
         Swal.fire({
           toast: true,
@@ -100,6 +100,7 @@ export default function TwitterMenfessForm({}) {
     textInput.current!.innerHTML = "";
     setTweet("");
     setImages(null);
+    setIsLoading(false);
   };
 
   return (

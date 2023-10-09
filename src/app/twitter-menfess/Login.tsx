@@ -7,7 +7,6 @@ import Airtables from "@/utils/Airtable";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import Introduction from "./Introduction";
 import Container from "@/commons/components/Container";
-import Card from "@/commons/components/Card";
 
 export default function Login({}) {
   // const searchParams = useSearchParams();

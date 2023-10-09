@@ -1,9 +1,8 @@
-import Image from 'next/image'
+import Home from "@/modules/Home";
 
-export default function Home() {
+
+export default function Homepage() {
   return (
-    <>
-      Home
-    </>
+   <Home/>
   )
 }
