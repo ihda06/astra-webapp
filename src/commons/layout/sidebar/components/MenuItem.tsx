@@ -10,7 +10,7 @@ export default function MenuItem({ icon, title, desc, path }: itemMenu) {
     const active = currentPath === url.pathname ? "bg-indigo-200" : ""
   return (
     <Link href={path}>
-      <div className={"w-full py-3 px-5 hover:bg-indigo-200 duration-300 rounded-full cursor-pointer "+active}>
+      <div className={"w-full py-3 px-5 hover:bg-indigo-200 duration-300 rounded-lg cursor-pointer "+active}>
         <div className="flex items-center gap-3">
           <div className=" text-4xl">{icon}</div>
           <div className="inline-block">

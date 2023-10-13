@@ -1,8 +1,11 @@
+import Container from "@/commons/components/Container";
 import Home from "@/modules/Home";
+import Image from "next/image";
 
-
-export default function Homepage() {
+export default function HomePage() {
   return (
-   <Home/>
-  )
+    <Container className="h-full">
+      <Home></Home>
+    </Container>
+  );
 }
