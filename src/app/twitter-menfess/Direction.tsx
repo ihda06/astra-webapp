@@ -5,7 +5,7 @@ import { IoFootstepsOutline } from "react-icons/io5"
 export default function Direction({}) {
   return (
     <div className="grid grid-cols-1 gap-2">
-      <Card className="w-full h-full">
+      <Card className="w-full">
         <div className=" h-14 flex text-neutral-700 dark:text-white items-center gap-3">
           <IoFootstepsOutline/>
           <h1 className="text-base font-bold">Cara menggunakan</h1>

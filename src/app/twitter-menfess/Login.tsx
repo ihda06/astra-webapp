@@ -59,8 +59,8 @@ export default function Login({}) {
   };
 
   return (
-    <Container className="h-full">
-      <div className="flex h-full">
+    <Container className="lg:h-full">
+      <div className="flex lg:h-full">
         <div className="flex bg-white flex-col lg:flex-row lg:my-36 w-full rounded-xl shadow-xl items-center p-7 gap-5">
           <div className="lg:basis-4/5 pr-6">
             <Introduction />
