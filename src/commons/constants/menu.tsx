@@ -15,10 +15,10 @@ export const menuList = [
     desc: "Kirim Menfess di CIANJURFESS",
     path: "/twitter-menfess"
   },
-  {
-    icon: <ImBubbles4 className=" text-blue-500" />,
-    title: "Topic Generator",
-    desc: "Nyari bahan ngobrol bareng doi? pake ini",
-    path: "/topic-generator"
-  },
+  // {
+  //   icon: <ImBubbles4 className=" text-blue-500" />,
+  //   title: "Topic Generator",
+  //   desc: "Nyari bahan ngobrol bareng doi? pake ini",
+  //   path: "/topic-generator"
+  // },
 ];
