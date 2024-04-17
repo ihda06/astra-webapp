@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/commons/components/Container";
 import Image from "next/image";
 import { BsImage } from "react-icons/bs";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -45,7 +44,7 @@ export default function TwitterMenfessForm({}) {
       setImages(e.target.files[0]); //error
     }
   };
-  const handleDelete = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleDelete = () => {
     setImages(null);
   };
 
@@ -53,9 +52,7 @@ export default function TwitterMenfessForm({}) {
     setTweet(e.target.innerText);
   };
 
-  const handlePostTweet = async (
-    e: React.MouseEvent<HTMLDivElement> 
-  ) => {
+  const handlePostTweet = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
     if (tweet.search(/Cjr!/) >= 0) {
       const formData = new FormData();
@@ -69,7 +66,7 @@ export default function TwitterMenfessForm({}) {
         },
       });
       const id = res.data.response.link;
-      
+
       if (id) {
         Swal.fire({
           toast: true,
@@ -106,31 +103,29 @@ export default function TwitterMenfessForm({}) {
   return (
     <>
       <div className="flex lg:justify-start justify-center rounded-lg shadow-md bg-white p-5">
-        {!isMobile && (
-          <div className="inline-block">
-            <Image
-              src="/logo-twitter.png"
-              width={100}
-              height={100}
-              alt="s"
-              className=" w-16 h-auto object-contain rounded-full border"
-            ></Image>
-          </div>
-        )}
+        <div className="inline-block lg:hidden">
+          <Image
+            src="/logo-twitter.png"
+            width={100}
+            height={100}
+            alt="s"
+            className=" w-16 h-auto object-contain rounded-full border"
+            priority
+          ></Image>
+        </div>
 
         <div className="flex flex-col gap-1 w-full md:pl-5 ">
           <div className="flex items-center">
-            {isMobile && (
-              <div className="inline-block">
-                <Image
-                  src="/logo-twitter.png"
-                  width={50}
-                  height={50}
-                  alt="s"
-                  className=" w-10 h-auto object-contain rounded-full border"
-                ></Image>
-              </div>
-            )}
+            <div className="lg:inline-block hidden">
+              <Image
+                src="/logo-twitter.png"
+                width={50}
+                height={50}
+                alt="s"
+                className=" w-10 h-auto object-contain rounded-full border"
+                priority
+              ></Image>
+            </div>
 
             <h1 className="pl-2 pb-2 text-xs font-extrabold text-sky-400">
               Mangga mau ngetweet apa?
@@ -178,7 +173,9 @@ export default function TwitterMenfessForm({}) {
 
                       <AiOutlineCloseCircle
                         className="text-lg text-red-600 cursor-pointer"
-                        onClick={handleDelete}
+                        onClick={() => {
+                          handleDelete();
+                        }}
                       ></AiOutlineCloseCircle>
                     </div>
                   ) : (

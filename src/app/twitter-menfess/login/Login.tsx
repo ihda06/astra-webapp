@@ -1,18 +1,17 @@
 "use client";
 
 import Button from "@/commons/components/Button";
-import { useTwitter } from "@/context/twitter-login";
 import Airtables from "@/utils/Airtable";
 
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
-import Introduction from "./Introduction";
+import { ChangeEvent, useState } from "react";
+import Introduction from "../Introduction";
 import Container from "@/commons/components/Container";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export default function Login({}) {
-  // const searchParams = useSearchParams();
-  const login = useTwitter((state) => state.setTelegramAccount);
+  const router = useRouter();
 
-  const twitterStatus = useTwitter((state) => state.telegramAccount);
   const [usnTele, setUsnTele] = useState<string>("");
   const [isError, setIsError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<Boolean>(false);
@@ -28,14 +27,12 @@ export default function Login({}) {
       .all();
     if (res.length > 0) {
       if (res[0].fields.verified) {
-        localStorage.setItem("teleUsn", usnTele as string);
-
-        login(usnTele);
-
-        // setUsnTele(usnTele)
+        setCookie("teleUsn", usnTele, { maxAge: 60 * 60 * 24 * 7 });
         return true;
       } else {
-        setIsError("Data belum diverifikasi");
+        setIsError(
+          "Data belum diverifikasi, silahkan konfirmasi ke @ihdaanwari via telegram"
+        );
         return false;
       }
     } else {
@@ -44,7 +41,7 @@ export default function Login({}) {
     }
   };
 
-  const handleClickLogin = async (e: MouseEvent<HTMLDivElement>) => {
+  const handleClickLogin = async () => {
     try {
       if (!usnTele) {
         setIsError("Mohon isi username");
@@ -52,10 +49,9 @@ export default function Login({}) {
         setIsLoading(true);
         await AuthTele();
         setIsLoading(false);
+        router.push("/twitter-menfess");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -73,23 +69,27 @@ export default function Login({}) {
                   Loading <span>⌛</span>
                 </div>
               ) : (
-                <>
-                  <div className="flex flex-col gap-5 ">
-                    {isError ? (
-                      <h4 className=" text-red-600 text-xs font-semibold">
-                        {isError}
-                      </h4>
-                    ) : (
-                      <h4 className=" text-neutral-800 text-xs font-semibold">
-                        Silahkan login dulu
-                      </h4>
-                    )}
-                    {twitterStatus}
-
+                <div className="flex flex-col gap-5 ">
+                  {isError ? (
+                    <h4 className=" text-red-600 text-xs font-semibold">
+                      {isError}
+                    </h4>
+                  ) : (
+                    <h4 className=" text-neutral-800 text-xs font-semibold">
+                      Silahkan login dulu
+                    </h4>
+                  )}
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleClickLogin();
+                    }}
+                    className="flex justify-between gap-3 w-full"
+                  >
                     <input
                       type="text"
                       className={
-                        "border p-1.5 px-3 rounded-full text-xs  placeholder:text-neutral-500 text-neutral-900" +
+                        "w-full border p-1.5 px-3 rounded-full text-xs  placeholder:text-neutral-500 text-neutral-900" +
                         (isError
                           ? "border-red-600 placeholder-red-600 focus:outline-red-600"
                           : "")
@@ -99,12 +99,12 @@ export default function Login({}) {
                     ></input>
                     <Button
                       className="hover:text-white text-xs border-blue-300 hover:bg-indigo-300 font-bold text-blue-900 shadow-md"
-                      onClick={handleClickLogin}
+                      type="submit"
                     >
                       Login
                     </Button>
-                  </div>
-                </>
+                  </form>
+                </div>
               )}
             </div>
           </div>

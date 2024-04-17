@@ -19,7 +19,6 @@ const threadMaker = (text: string, imageId?: string) => {
     let first = thread[0];
     const newObj = { text: first, media: { media_ids: [imageId] } };
     thread[0] = newObj;
-    console.log(thread);
   }
   return thread;
 };

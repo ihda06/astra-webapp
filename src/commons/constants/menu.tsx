@@ -7,13 +7,13 @@ export const menuList = [
     icon: <SiHomeadvisor className=" text-blue-500" />,
     title: "Beranda",
     desc: "",
-    path: "/"
+    path: "/",
   },
   {
     icon: <IoLogoTwitter className="text-sky-300" />,
     title: "Twitter Menfess",
     desc: "Kirim Menfess di CIANJURFESS",
-    path: "/twitter-menfess"
+    path: "/twitter-menfess/login",
   },
   // {
   //   icon: <ImBubbles4 className=" text-blue-500" />,

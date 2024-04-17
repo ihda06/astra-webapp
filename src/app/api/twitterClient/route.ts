@@ -1,5 +1,5 @@
 import { postTweet, postWithImage } from "@/services/tweet.services";
-import sharp from "sharp"; 
+import sharp from "sharp";
 import { NextRequest, NextResponse } from "next/server";
 
 import { TwitterApi } from "twitter-api-v2";
@@ -20,21 +20,6 @@ const userClient = new TwitterApi({
 });
 
 const rwClient = userClient.readWrite;
-export async function GET() {
-  try {
-    const twitterLink = await rwClient.generateAuthLink(
-      "http://localhost:3000/twitter-menfess",
-      { linkMode: "authorize" }
-    );
-
-    //     console.log(twitterLink);
-
-    return Response.json({ twitterLink });
-  } catch (error) {
-    console.log(error);
-    return Response.json({ error: error });
-  }
-}
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
@@ -46,13 +31,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const response = await postTweet(text);
       return Response.json({ response });
     } else {
-  
       const response = await postWithImage(file, text);
-      return Response.json({response});
+      return Response.json({ response });
     }
   } catch (error) {
-    console.log(error);
-
-    return Response.json({error, errorMsg: "Error"});
+    return Response.json({ error, errorMsg: "Error" });
   }
 }
