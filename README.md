@@ -25,7 +25,6 @@ Automenfess berfungsi dengan cara pengguna mengirim pesan melalui form yang dise
 - Improvement : Send Image with watermark and compressing image file
 - Improvement : Login logic and method
 
-- 
 ## Kontribusi
 
 Kontribusi selalu dipersilakan! Silakan buat _pull request_ jika Anda ingin menambahkan fitur baru, memperbaiki bug, atau meningkatkan dokumentasi.
