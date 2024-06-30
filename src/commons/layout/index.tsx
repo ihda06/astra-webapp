@@ -11,7 +11,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       </header>
       <main className="transition-all duration-300 w-full h-screen flex">
         <Sidebar />
-        <div className="w-full lg:overflow-y-auto ">{children}</div>
+        <div className="mt-5 mb-10 lg:mt-0 lg:mb-0 py-5 px-8 bg-indigo-50 w-full">
+          {children}
+        </div>
       </main>
     </div>
   );

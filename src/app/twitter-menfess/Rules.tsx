@@ -3,8 +3,8 @@ import { AiOutlineAlert } from "react-icons/ai";
 
 export default function Rules({}) {
   return (
-    <Card className="w-full">
-      <div className=" h-14 gap-3 text-neutral-700 dark:text-white flex items-center">
+    <Card className="w-full space-y-3">
+      <div className="gap-3 text-neutral-700 dark:text-white flex items-center">
         <AiOutlineAlert></AiOutlineAlert>
         <h1 className=" text-base font-bold">Rules</h1>
       </div>

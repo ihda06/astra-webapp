@@ -1,17 +1,38 @@
-import Container from "@/commons/components/Container";
+"use client";
+
 import TwitterMenfessForm from "./TwitterMenfessForm";
-import Direction from "./Direction";
-import { SiTelegram } from "react-icons/si";
+
 import Rules from "./Rules";
+import Verify from "./Verify";
+import { useEffect, useState } from "react";
+import { getStatus } from "@/actions/auth";
+import Loading from "@/commons/components/Loading";
 
+export default function TwitterMenfess() {
+  const [status, setStatus] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-export default function TwitterMenfess({}) {
+  useEffect(() => {
+    const fetchStatus = async () => {
+      setLoading(true);
+      const status = await getStatus();
+      setStatus(status);
+      setLoading(false);
+    };
+    fetchStatus();
+  }, []);
   return (
-    <Container className="flex flex-col gap-5 lg:w-[900px]">
-      <Direction />
-      <TwitterMenfessForm />
-      <Rules/>
-      {/* <TopicSuggestion></TopicSuggestion> */}
-    </Container>
+    <div className="h-full lg:overflow-y-auto space-y-6">
+      {loading ? (
+        <Loading />
+      ) : status ? (
+        <>
+          <Rules />
+          <TwitterMenfessForm />
+        </>
+      ) : (
+        <Verify />
+      )}
+    </div>
   );
 }

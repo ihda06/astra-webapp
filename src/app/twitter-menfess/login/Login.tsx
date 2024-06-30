@@ -1,116 +1,123 @@
 "use client";
 
 import Button from "@/commons/components/Button";
-import Airtables from "@/utils/Airtable";
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import Introduction from "../Introduction";
-import Container from "@/commons/components/Container";
-import { setCookie } from "cookies-next";
+
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Textfield from "@/commons/components/Textfield";
+import { Auth } from "@/actions/auth";
+import Swal from "sweetalert2";
 
 export default function Login({}) {
   const router = useRouter();
 
-  const [usnTele, setUsnTele] = useState<string>("");
+  const [usnTwitter, setUsnTwitter] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isError, setIsError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value != null) {
-      setUsnTele(e.target.value);
-    }
-  };
 
   const AuthTele = async () => {
-    const res = await Airtables("databaseTwitter")
-      .select({ filterByFormula: `username_tele = "${usnTele}"` })
-      .all();
-    if (res.length > 0) {
-      if (res[0].fields.verified) {
-        setCookie("teleUsn", usnTele, { maxAge: 60 * 60 * 24 * 7 });
-        return true;
-      } else {
-        setIsError(
-          "Data belum diverifikasi, silahkan konfirmasi ke @ihdaanwari via telegram"
-        );
-        return false;
-      }
+    const res = await Auth(usnTwitter, password);
+    if (!res) {
+      setIsError("Username / Password Salah");
     } else {
-      setIsError("Akun belum didaftarkan, silahkan gunakan bot telegram");
-      return false;
+      setIsError("");
+      Swal.fire({
+        toast: true,
+        title: "Login Berhasil",
+        icon: "success",
+        timer: 2000,
+        timerProgressBar: true,
+      });
+      router.refresh();
     }
   };
 
   const handleClickLogin = async () => {
-    try {
-      if (!usnTele) {
-        setIsError("Mohon isi username");
-      } else {
-        setIsLoading(true);
-        await AuthTele();
-        setIsLoading(false);
-        router.push("/twitter-menfess");
-      }
-    } catch (error) {}
+    if (!usnTwitter) {
+      setIsError("Mohon isi username");
+    } else {
+      setIsLoading(true);
+      await AuthTele();
+      setIsLoading(false);
+      router.push("/twitter-menfess");
+    }
   };
 
   return (
-    <Container className="lg:h-full">
-      <div className="flex lg:h-full">
-        <div className="flex bg-white flex-col lg:flex-row lg:my-36 w-full rounded-xl shadow-xl items-center p-7 gap-5">
-          <div className="lg:basis-4/5 pr-6">
-            <Introduction />
-          </div>
-          <div className="lg:h-full lg:border-l-2 border-t-2 w-full lg:w-0"></div>
-          <div className="lg:basis-2/5 w-full">
-            <div className="flex flex-col gap-2 text-center ">
-              {isLoading ? (
-                <div className="text-center text-neutral-500">
-                  Loading <span>⌛</span>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-5 ">
+    <div className="flex lg:h-full">
+      <div className="flex bg-white flex-col lg:flex-row lg:my-36 w-full rounded-xl shadow-xl items-center p-7 gap-5">
+        <div className="lg:basis-4/5 pr-6">
+          <Introduction />
+        </div>
+        <div className="lg:h-full lg:border-l-2 border-t-2 w-full lg:w-0"></div>
+        <div className="lg:basis-2/5 w-full">
+          <div className="flex flex-col gap-2 ">
+            {isLoading ? (
+              <button className="text-center text-neutral-500" disabled>
+                Loading <span>⌛</span>
+              </button>
+            ) : (
+              <div className="flex flex-col gap-5 ">
+                <div className="">
+                  <h1 className="text-xl text-neutral-800 font-semibold">
+                    Login
+                  </h1>
                   {isError ? (
                     <h4 className=" text-red-600 text-xs font-semibold">
                       {isError}
                     </h4>
                   ) : (
-                    <h4 className=" text-neutral-800 text-xs font-semibold">
-                      Silahkan login dulu
-                    </h4>
+                    <p className="text-xs text-neutral-400">
+                      Login untuk mengakses fitur
+                    </p>
                   )}
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handleClickLogin();
-                    }}
-                    className="flex justify-between gap-3 w-full"
-                  >
-                    <input
-                      type="text"
-                      className={
-                        "w-full border p-1.5 px-3 rounded-full text-xs  placeholder:text-neutral-500 text-neutral-900" +
-                        (isError
-                          ? "border-red-600 placeholder-red-600 focus:outline-red-600"
-                          : "")
-                      }
-                      placeholder="Silahkan tulis username telegram kamu"
-                      onChange={handleChange}
-                    ></input>
-                    <Button
-                      className="hover:text-white text-xs border-blue-300 hover:bg-indigo-300 font-bold text-blue-900 shadow-md"
-                      type="submit"
-                    >
-                      Login
-                    </Button>
-                  </form>
                 </div>
-              )}
-            </div>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleClickLogin();
+                  }}
+                  className="flex flex-col justify-between gap-3 w-full"
+                >
+                  <Textfield
+                    label="Username"
+                    placeholder="Username"
+                    onChange={(e) => setUsnTwitter(e.currentTarget.value)}
+                  />
+                  <Textfield
+                    label="Password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.currentTarget.value)}
+                    type="password"
+                  />
+                  <Button
+                    className="hover:text-white text-xs border-blue-300 hover:bg-indigo-300 font-bold text-blue-900 shadow-md"
+                    type="submit"
+                  >
+                    Login
+                  </Button>
+                </form>
+                <div className="">
+                  <span className="text-xs inline-block">
+                    Belum punya akun?&nbsp;
+                  </span>
+                  <Link
+                    href={"/twitter-menfess/register"}
+                    className="text-xs text-blue-400 underline"
+                  >
+                    Buat Akun
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        {/* <Introduction /> */}
       </div>
-    </Container>
+      {/* <Introduction /> */}
+    </div>
   );
 }

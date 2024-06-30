@@ -11,10 +11,7 @@ export default function MobileHeader() {
       <div className="flex items-center gap-4">
         <BsRobot size="25px" className="text-neutral-800" />
         <div className="inline-block">
-          <h1 className=" text-base font-bold text-blue-900">Hello !! 👋</h1>
-          <h2 className="text-[10px] text-blue-400">
-            Welcome to Astra Web App
-          </h2>
+          <h1 className=" text-base font-bold text-blue-900">Astra Web App</h1>
         </div>
       </div>
       <div className="w-full flex flex-col items-center ">
