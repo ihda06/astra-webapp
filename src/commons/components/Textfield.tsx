@@ -34,7 +34,7 @@ export default forwardRef<HTMLInputElement, TextfieldProps>(function Textfield(
         {...props}
         id={id ?? textfieldId}
         ref={ref}
-        className="p-2 rounded-lg border focus:outline-blue-700"
+        className="p-2 rounded-lg border focus:outline-blue-700 text-neutral-900 placeholder:text-gray-400"
       />
     </FieldWrapper>
   );
