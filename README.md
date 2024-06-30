@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WebApp Playground
 
-## Getting Started
+Ini adalah proyek Next.js yang berfungsi sebagai playground untuk pengembangan keterampilan Frontend Engineering saya. 
 
-First, run the development server:
+## Fitur
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Fitur pertama - Twitter Automenfess
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Twitter Automenfess memungkinkan pengguna untuk mengirim pesan otomatis anonim ke akun Twitter [@CjrFess](https://twitter.com/CjrFess). Fitur ini dapat berguna untuk berbagai keperluan seperti menyampaikan pendapat, curhat, atau berbagi cerita tanpa harus membuka identitas pengirim. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Twitter Automenfess yang terintegrasi dengan akun [@CjrFess](https://twitter.com/CjrFess) dan aktif digunakan.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Automenfess berfungsi dengan cara pengguna mengirim pesan melalui form yang disediakan dalam aplikasi web. Pesan tersebut kemudian diposting di akun Twitter @CjrFess tanpa menyertakan identitas pengirim, menjaga anonimitas pengguna. Fitur ini dapat menjadi tempat bagi pengguna untuk mengekspresikan diri dengan bebas tanpa perlu khawatir tentang pengungkapan identitas mereka.
 
-## Learn More
+#### Sub Fitur:
+- Login
+- Send Tweet
+- Send Tweet with Image
+  
+#### Tech stack:
+- [Twitter API Node JS](https://github.com/plhery/node-twitter-api-v2)
+- [Airtable](https://airtable.com/)
 
-To learn more about Next.js, take a look at the following resources:
+#### Next Fitur:
+- Improvement : Send Image with watermark and compressing image file
+- Improvement : Login logic and method
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Kontribusi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Kontribusi selalu dipersilakan! Silakan buat _pull request_ jika Anda ingin menambahkan fitur baru, memperbaiki bug, atau meningkatkan dokumentasi.
 
-## Deploy on Vercel
+## Lisensi
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
